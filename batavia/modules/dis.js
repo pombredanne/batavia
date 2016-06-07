@@ -6,22 +6,22 @@
 batavia.modules.dis = {
     CO_GENERATOR: 32,  // flag for "this code uses yield"
 
-    hasconst: new Set(),
-    hasname: new Set(),
-    hasjrel: new Set(),
-    hasjabs: new Set(),
-    haslocal: new Set(),
-    hascompare: new Set(),
-    hasfree: new Set(),
-    hasnargs: new Set(),
+    hasconst: new batavia.types.Set(),
+    hasname: new batavia.types.Set(),
+    hasjrel: new batavia.types.Set(),
+    hasjabs: new batavia.types.Set(),
+    haslocal: new batavia.types.Set(),
+    hascompare: new batavia.types.Set(),
+    hasfree: new batavia.types.Set(),
+    hasnargs: new batavia.types.Set(),
 
     opmap: null,
     opname: [],
 
-    unary_ops: new Set(),
-    binary_ops: new Set(),
-    inplace_ops: new Set(),
-    // slice_ops: new Set(),
+    unary_ops: new batavia.types.Set(),
+    binary_ops: new batavia.types.Set(),
+    inplace_ops: new batavia.types.Set(),
+    // slice_ops: new batavia.types.Set(),
 
     def_op: function(name, op) {
         batavia.modules.dis.opname[op] = name;
@@ -69,12 +69,11 @@ batavia.modules.dis = {
             return;
         }
 
-        console.log('Initializing opcodes...');
         batavia.modules.dis.opmap = {};
 
         // Prime the opname list with all possible opnames
         for (var op=0; op < 256; op++) {
-            batavia.modules.dis.opname.append('<' + op + '>');
+            batavia.modules.dis.opname.push('<' + op + '>');
         }
 
         // Register the known opnames

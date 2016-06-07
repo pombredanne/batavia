@@ -9,6 +9,8 @@ batavia.core.PYCFile = function(data) {
     this.size = data.slice(8, 12);
     this.data = data.slice(12);
 
+    batavia.BATAVIA_MAGIC = this.magic;
+
     // this.data = data;
     this.depth = 0;
     this.ptr = 0;
@@ -22,7 +24,7 @@ batavia.core.PYCFile.prototype.getc = function() {
     if (this.ptr < this.end) {
         return this.data[this.ptr++].charCodeAt();
     }
-    throw batavia.core.PYCFile.EOF;
+    return batavia.core.PYCFile.EOF;
 };
 
 batavia.core.PYCFile.prototype.fread = function(n) {
@@ -31,5 +33,5 @@ batavia.core.PYCFile.prototype.fread = function(n) {
         this.ptr += n;
         return retval;
     }
-    throw PYCFile.EOF;
+    return batavia.core.PYCFile.EOF;
 };

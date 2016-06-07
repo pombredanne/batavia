@@ -8,3 +8,11 @@ local
 _build
 distribute-*
 /batavia.js
+/batavia.min.js
+/tests/temp
+env
+.eggs/
+.python-version
+
+# PyCharm settings
+.idea
